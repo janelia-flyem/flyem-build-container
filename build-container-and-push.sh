@@ -10,7 +10,7 @@ fi
 
 TAG=$(git describe)
 
-DOCKERHUB_ACCOUNT=stuarteberg
+DOCKERHUB_ACCOUNT=flyem
 
 IMAGE_NAME=$1
 docker build -t ${DOCKERHUB_ACCOUNT}/${IMAGE_NAME}:${TAG} -f ${IMAGE_NAME}/Dockerfile --no-cache .

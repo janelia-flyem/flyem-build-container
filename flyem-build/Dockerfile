@@ -3,7 +3,7 @@
 #
 # Their Dockerfile is here:
 # https://github.com/conda-forge/docker-images/blob/master/linux-anvil-comp7/Dockerfile
-FROM stuarteberg/linux-anvil-comp7
+FROM flyem/linux-anvil-comp7
 
 # The 'conda' user gets permission to use sudo for any command, without a password
 #
