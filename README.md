@@ -54,5 +54,5 @@ If you need to modify the `flyem-build` image, take the following steps:
 
 1. Edit `flyem-build/Dockerfile` as needed
 2. Test with `docker build --no-cache -t flyem-build -f flyem-build/Dockerfile .`
-3. Tag this repo with your new tag: `git tag -a flyem-0.1 && git push origin --tags`
+3. Tag this repo with your new tag: `git tag -a flyem-0.1 -m flyem-0.1 && git push --follow-tags origin master`
 4. Run `./build-container-and-push.sh`
