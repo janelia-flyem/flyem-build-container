@@ -3,7 +3,7 @@
 if [ "$#" -ne 1 ]; then
     1>&2 echo "Usage:"
     1>&2 echo ""
-    1>&2 echo "  $0 linux-anvil"
+    1>&2 echo "  $0 linux-anvil-comp7"
     1>&2 echo "  $0 flyem-build"
     exit 1
 fi
