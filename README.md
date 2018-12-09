@@ -2,8 +2,8 @@
 
 # flyem-build-container
 
-Builds a Docker container for building FlyEM conda packages.
-Based on the conda-forge 'linux-anvil-comp7' image, which is based on CentOS 6.
+A CentOS-6 Docker container for building FlyEM conda packages.
+Based on the conda-forge `linux-anvil-comp7` docker image.
 
 
 ## Launch or resume
@@ -22,15 +22,15 @@ When you want to re-attach to the container:
 ```
 
 
-## Usage
+## Features
 
 - The `conda` user can run `sudo` with no password
 - `miniconda` is pre-installed (in `/opt/conda`)
 - Many packages are easily built and uploaded using `/flyem-workspace/ilastik-publish-packages/build-recipes.py`.  For example:
    - `./build-recipes.py flyem-recipe-specs.yaml dvid`
 
-**Note:** Don't install `gcc` with `yum`.  FlyEM packages should be built
-using Anaconda's compiler packages (e.g. `linux_gcc-64` and `linux-gxx-64`)
+**Note:** Don't use `yum` to install `gcc`.  Instead, FlyEM packages should be built
+using Anaconda's compiler packages (e.g. `linux_gcc-64` and `linux-gxx-64`).
 
 
 ### DVID development
@@ -47,8 +47,8 @@ make test
 
 ## Maintaining the `flyem-build` container
 
-This repo is forked from the `conda-forge/docker-images` just to make sure we
-can build our own tag of the `linux-anvil-comp7` container (in case they change it).
+This repo is forked from the `conda-forge/docker-images`, just to make sure we
+can maintain our own tag of the `linux-anvil-comp7` container (in case they change it).
 
-If you need to modify the `flyem-build` image, modify `flyem-build/Dockerfile` as needed,
-and run `./build-container-and-push.sh`.
+If you need to modify the `flyem-build` image, edit `flyem-build/Dockerfile` as needed,
+and then run `./build-container-and-push.sh`.
