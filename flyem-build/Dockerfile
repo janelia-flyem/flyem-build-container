@@ -39,6 +39,7 @@ ENV GOPATH ${FLYEM_WORKSPACE}/gopath
 ENV DVID_SRC ${GOPATH}/src/github.com/janelia-flyem/dvid
 RUN git clone https://github.com/janelia-flyem/dvid ${DVID_SRC}
 RUN source activate dvid-devel && cd ${DVID_SRC} && ./scripts/install-developer-dependencies.sh
+RUN conda clean -tsy
 
 #
 # The 'conda' user is a member of the 'lucky' group.
