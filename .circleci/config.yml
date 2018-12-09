@@ -3,7 +3,7 @@ version: 2
 jobs:
   build:
     environment:
-      DOCKERIMAGE: linux-anvil
+      DOCKERIMAGE: flyem-build
     working_directory: ~/test
     machine: true
     steps:
