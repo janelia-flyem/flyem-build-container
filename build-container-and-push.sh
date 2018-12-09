@@ -16,7 +16,7 @@ IMAGE_NAME=$1
 docker build -t ${DOCKERHUB_ACCOUNT}/${IMAGE_NAME}:${TAG} -f ${IMAGE_NAME}/Dockerfile --no-cache .
 
 # Create an additional tag 'latest'
-docker tag ${DOCKERHUB_ACCOUNT}/linux-anvil-comp7:flyem-0.0 ${DOCKERHUB_ACCOUNT}/linux-anvil-comp7:latest
+docker tag ${DOCKERHUB_ACCOUNT}/${IMAGE_NAME}:${TAG} ${DOCKERHUB_ACCOUNT}/${IMAGE_NAME}:latest
 
 # Push the container twice, using both tags (versioned and 'latest')
 docker push ${DOCKERHUB_ACCOUNT}/${IMAGE_NAME}:${TAG}
