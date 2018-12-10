@@ -9,7 +9,8 @@ Based on the conda-forge `linux-anvil-comp7` docker image.
 ## Launch or resume
 
 The `flyem-build` image is already uploaded to Dockerhub, so there's no need to build it.
-To download and launch it for the first time on your local machine:
+To download and launch it for the first time on your local machine, clone this repo and
+then run the following:
 
 ```
 ./launch.sh
@@ -44,6 +45,14 @@ cd /flyem-workspace/gopath/src/github.com/janelia-flyem/dvid
 make test
 ```
 
+## Tips
+
+### Tune your Docker settings
+
+If you're running Docker for Mac, you should probably allocate more RAM to the
+Docker VM ("Docker Engine") than it starts with by default.
+From the Docker menu at the top of your screen, select "Preferences" and find the "Advanced" tab.
+Set Memory to something reasonable (e.g. at least 4 GB).
 
 ## Maintaining the `flyem-build` container
 
@@ -83,8 +92,12 @@ If you need to modify the `flyem-build` image, take the following steps:
      Write your files into `/flyem-workspace`.  To give the `conda` user access to the files, make sure they belong
      to the `lucky` group.  (If your files are in `/flyem-workspace` or `/opt/conda`, then the group permissions are
      automatically set for you.  See the last lines of `flyem-build/Dockerfile`.)
-     
+
+- I'm seeing [strange errors][] when I run the DVID test suite in the container.
+   - Make sure Docker has enough RAM.  See "Tune your Docker settings", above.
+
 [trick]: https://github.com/janelia-flyem/flyem-build-container/blob/master/scripts/entrypoint#L3-L5
 [CentOS]: https://distrowatch.com/table.php?distribution=centos
 [Ubuntu]: https://distrowatch.com/table.php?distribution=ubuntu
 [Scientific Linux]: https://distrowatch.com/table.php?distribution=scientific
+[strange errors]: https://github.com/janelia-flyem/dvid/issues/299
