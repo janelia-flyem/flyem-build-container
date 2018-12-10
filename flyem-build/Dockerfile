@@ -18,6 +18,9 @@ RUN echo "root:" | chpasswd
 # Make sure conda is on the path
 ENV PATH /opt/conda/bin:${PATH}
 
+# Pin conda and conda-build to known-working versions
+RUN conda install -n base -y conda=4.5.11 conda-build=3.16.3
+
 # Create a workspace for our code
 ENV FLYEM_WORKSPACE /flyem-workspace
 RUN mkdir ${FLYEM_WORKSPACE}
