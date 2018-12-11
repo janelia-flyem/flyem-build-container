@@ -47,12 +47,31 @@ make test
 
 ## Tips
 
-### Tune your Docker settings
+#### Tune your Docker settings
 
 If you're running Docker for Mac, you should probably allocate more RAM to the
 Docker VM ("Docker Engine") than it starts with by default.
 From the Docker menu at the top of your screen, select "Preferences" and find the "Advanced" tab.
 Set Memory to something reasonable (e.g. at least 4 GB).
+
+#### Useful Docker commands
+
+```bash
+# List all of your downloaded images (from which containers could be created)
+docker images
+
+# List all of your currently running containers
+docker ps
+
+# List all of your currently running AND stopped containers (which could be resumed via 'docker start')
+docker ps -a
+
+# Delete a container (e.g. flyem-build)
+docker rm flyem-build
+
+# Delete an image (e.g. the 'flyem-0.1' tag of image 'flyem/flyem-build')
+docker rmi flyem/flyem-build:flyem-0.1
+```
 
 ## Maintaining the `flyem-build` container
 
