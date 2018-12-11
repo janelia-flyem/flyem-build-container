@@ -44,6 +44,11 @@ RUN git clone https://github.com/janelia-flyem/dvid ${DVID_SRC}
 RUN source activate dvid-devel && cd ${DVID_SRC} && ./scripts/install-developer-dependencies.sh
 RUN conda clean -tsy
 
+# We modified the original entrypoint script (from condaforge/linux-anvil-comp7)
+# to avoid re-creating the conda user every time we re-attach to the container.
+# Overwrite it in the container
+COPY flyem-build/entrypoint /opt/docker/bin/entrypoint
+
 #
 # The 'conda' user is a member of the 'lucky' group.
 # Make sure that user has full access to /flyem-workspace and /opt/conda
