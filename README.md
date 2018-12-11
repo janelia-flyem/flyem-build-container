@@ -90,7 +90,7 @@ If you need to modify the `flyem-build` image, take the following steps:
 4. In your terminal, login to Dockerhub:
    - `docker login`
 5. Build the image and push it to Dockerhub:
-   -  `./build-container-and-push.sh`
+   -  `./build-image-and-push.sh`
 
 
 ## FAQ
