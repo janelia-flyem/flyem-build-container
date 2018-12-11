@@ -13,7 +13,7 @@ TAG=$(git describe)
 DOCKERHUB_ACCOUNT=flyem
 
 IMAGE_NAME=$1
-docker build -t ${DOCKERHUB_ACCOUNT}/${IMAGE_NAME}:${TAG} -f ${IMAGE_NAME}/Dockerfile --no-cache .
+docker build -t ${DOCKERHUB_ACCOUNT}/${IMAGE_NAME}:${TAG} -f ${IMAGE_NAME}/Dockerfile .
 
 # Create an additional tag 'latest'
 docker tag ${DOCKERHUB_ACCOUNT}/${IMAGE_NAME}:${TAG} ${DOCKERHUB_ACCOUNT}/${IMAGE_NAME}:latest

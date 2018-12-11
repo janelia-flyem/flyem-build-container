@@ -80,11 +80,17 @@ can maintain our own tag of the `linux-anvil-comp7` container (in case they chan
 
 If you need to modify the `flyem-build` image, take the following steps:
 
-1. Edit `flyem-build/Dockerfile` as needed
-2. Test with `docker build --no-cache -t flyem-build -f flyem-build/Dockerfile .`
-3. Tag this repo with your new tag: `git tag -a flyem-0.1 -m flyem-0.1 && git push --follow-tags origin master`
-4. In your terminal, login to Dockerhub: `docker login`
-5. Run `./build-container-and-push.sh`
+1. Edit `flyem-build/Dockerfile` as needed.
+2. Test with:
+   - `docker build -t flyem-build -f flyem-build/Dockerfile .`
+   - Note: If your Dockerfile is pulling git repos that have changed recently, you may want to use `--nocache`:
+      - `docker build -t flyem-build -f flyem-build/Dockerfile --nocache .`
+3. Tag this repo with your new tag:
+   - `git tag -a flyem-0.1 -m flyem-0.1 && git push --follow-tags origin master`
+4. In your terminal, login to Dockerhub:
+   - `docker login`
+5. Build the image and push it to Dockerhub:
+   -  `./build-container-and-push.sh`
 
 
 ## FAQ
