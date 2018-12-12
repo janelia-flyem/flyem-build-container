@@ -15,6 +15,9 @@ RUN echo 'conda ALL=NOPASSWD: ALL' >> /etc/sudoers
 # No root password
 RUN echo "root:" | chpasswd
 
+# Extra GL dependencies; needed by NeuTu
+RUN yum install -y libGLU-devel
+
 # Make sure conda is on the path
 ENV PATH /opt/conda/bin:${PATH}
 
