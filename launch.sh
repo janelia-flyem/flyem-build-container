@@ -30,9 +30,11 @@
 #       ...but for now, that's probably more trouble than it's worth.
 ip=$(ifconfig en0 | grep inet | awk '$1=="inet" {print $2}')
 
+DOCKERHUB_USER=${DOCKERHUB_USER-flyem}
 IMAGE_NAME=${1-flyem-build}
 CONTAINER_NAME=${2-${IMAGE_NAME}}
-ACCOUNT_NAME=flyem
+
+docker pull ${DOCKERHUB_USER}/${IMAGE_NAME}
 
 docker run -it \
     --name ${CONTAINER_NAME} \
@@ -42,5 +44,5 @@ docker run -it \
     -e HOST_GROUP_ID=$(id -g $USERNAME) \
     -e DISPLAY=$ip:0 \
     -v /tmp/.X11-unix:/tmp/.X11-unix \
-    ${ACCOUNT_NAME}/${IMAGE_NAME} \
+    ${DOCKERHUB_USER}/${IMAGE_NAME} \
 ##
