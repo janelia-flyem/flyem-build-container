@@ -15,9 +15,6 @@ RUN echo 'conda ALL=NOPASSWD: ALL' >> /etc/sudoers
 # No root password
 RUN echo "root:" | chpasswd
 
-# Extra GL dependencies; needed by NeuTu
-RUN yum install -y libGLU-devel
-
 # Make sure conda is on the path
 ENV PATH /opt/conda/bin:${PATH}
 
@@ -46,6 +43,9 @@ ENV DVID_SRC ${GOPATH}/src/github.com/janelia-flyem/dvid
 RUN git clone https://github.com/janelia-flyem/dvid ${DVID_SRC}
 RUN source activate dvid-devel && cd ${DVID_SRC} && ./scripts/install-developer-dependencies.sh
 RUN conda clean -tsy
+
+# Extra GL dependencies; needed by NeuTu
+RUN yum install -y libGLU-devel libXi
 
 # We modified the original entrypoint script (from condaforge/linux-anvil-comp7)
 # to avoid re-creating the conda user every time we re-attach to the container.
