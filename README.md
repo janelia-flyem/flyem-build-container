@@ -23,6 +23,20 @@ When you want to re-attach to the container:
 ```
 
 
+**Note:**
+If you've already launched the container once, but now want to
+replace it using the latest image, you'll need to delete your old
+container (or rename it) before running `./launch` again:
+
+```
+docker rm flyem-build
+# OR:
+docker rename flyem-build old-flyem-build
+
+# Craetes a new container named 'flyem-build'
+./launch
+```
+
 ## Features
 
 - The `conda` user can run `sudo` with no password
