@@ -51,11 +51,15 @@ using Anaconda's compiler packages (e.g. `linux_gcc-64` and `linux-gxx-64`).
 ### DVID development
 
 For debugging DVID build issues in particular, a dvid development
-setup is already installed.  To test the build:
+tree is already created, but the dependencies are not pre-downloaded.
+To initialize the dvid developer setup, and test the build, run these commands:
 
 ```
 source activate dvid-devel
 cd /flyem-workspace/gopath/src/github.com/janelia-flyem/dvid
+git pull origin master
+./scripts/install-developer-dependencies.sh
+make dvid
 make test
 ```
 

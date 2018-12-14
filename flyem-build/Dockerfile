@@ -41,8 +41,11 @@ ENV PATH /opt/conda/envs/dvid-devel/bin:${PATH}
 ENV GOPATH ${FLYEM_WORKSPACE}/gopath
 ENV DVID_SRC ${GOPATH}/src/github.com/janelia-flyem/dvid
 RUN git clone https://github.com/janelia-flyem/dvid ${DVID_SRC}
-RUN source activate dvid-devel && cd ${DVID_SRC} && ./scripts/install-developer-dependencies.sh
-RUN conda clean -tsy
+
+# Don't actually populate the environment with dependencies; it makes the container too darn heavy.
+# DVID developers will need to run these commands manually.
+#RUN source activate dvid-devel && cd ${DVID_SRC} && ./scripts/install-developer-dependencies.sh
+#RUN conda clean -tsy
 
 # Extra GL dependencies; needed by NeuTu
 RUN yum install -y libGLU-devel libXi
