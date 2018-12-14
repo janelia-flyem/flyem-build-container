@@ -29,6 +29,7 @@
 #       - https://github.com/ilastik/ilastik-test-vm/blob/master/Vagrantfile#L149-L217
 #       ...but for now, that's probably more trouble than it's worth.
 ip=$(ifconfig en0 | grep inet | awk '$1=="inet" {print $2}')
+xhost + $ip
 
 DOCKERHUB_USER=${DOCKERHUB_USER-flyem}
 IMAGE_NAME=${1-flyem-build}
