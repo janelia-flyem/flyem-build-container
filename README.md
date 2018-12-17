@@ -125,9 +125,11 @@ If you need to modify the `flyem-build` image, take the following steps:
    - The file permissions on the extracted files will match your username, thanks to a [trick][] from the conda-forge team.
 
 - Who can use the binaries I generate in the container?
-   - Almost any Linux user. Our conda packages have no external dependencies except for `glibc.so`.
+   - Almost any Linux user. Generally, our conda packages have no external dependencies except
+     for `glibc`, X11-related packages, and OpenGL-related packages (when necessary).
      The container is running CentOS-6, which uses `glibc 2.12`.
-     Any Linux distro with a newer version of `glibc` can run our binaries.
+     Usually any Linux distro with a newer version of `glibc` can run our binaries.
+     That includes all modern Linux distributions.
      Here are some helpful distrowatch pages: [Ubuntu][], [CentOS][], [Scientific Linux][]
 
 - I want to add some steps to the `Dockerfile`, but it won't let me add anything to `/home/conda`.  What gives?
