@@ -29,7 +29,9 @@ RUN mkdir ${FLYEM_WORKSPACE}
 RUN cd ${FLYEM_WORKSPACE} && git clone https://github.com/ilastik/ilastik-publish-packages
 RUN cd ${FLYEM_WORKSPACE}/ilastik-publish-packages && git checkout flyem && cd -
 
-# Add flyem-forge to ~/.condarc
+# Add the OLD conda-forge label and flyem-forge to ~/.condarc
+RUN conda config --remove channels conda-forge
+RUN conda config --add channels conda-forge/label/cf201901
 RUN conda config --add channels flyem-forge
 
 #
