@@ -41,12 +41,28 @@ docker rename flyem-build old-flyem-build
 
 - The `conda` user can run `sudo` with no password
 - `miniconda` is pre-installed (in `/opt/conda`)
-- A convenience script for building and uploading our conda packages is installed to `/flyem-workspace/ilastik-publish-packages/build-recipes.py`.
-   - Example usage: `./build-recipes.py flyem-recipe-specs.yaml libdvid-cpp`
+- The [`publish-conda-stack` tool][pcs] is pre-instaled.
+
+[pcs]: http://github.com/ilastik/publish-conda-stack
 
 **Note:** Don't use `yum` to install `gcc`.  Instead, FlyEM packages should be built
 using Anaconda's compiler packages (e.g. `linux_gcc-64` and `linux-gxx-64`).
 
+
+### Building FlyEM recipes
+
+To build a list of flyem recipes, navigate to the recipe repo and use `publish-conda-stack`.
+
+```
+# Launch the container
+cd flyem-build-container
+./launch.sh # (or ./resume.sh)
+
+# (Within the container)
+cd /flyem-workspace/flyem-conda-recipes
+git pull origin master
+publish-conda-stack flyem-recipe-specs.yaml libdvid-cpp lowtis
+```
 
 ### DVID development
 
@@ -70,7 +86,7 @@ make test
 If you're running Docker for Mac, you should probably allocate more RAM to the
 Docker VM ("Docker Engine") than it starts with by default.
 From the Docker menu at the top of your screen, select "Preferences" and find the "Advanced" tab.
-Set Memory to something reasonable (e.g. at least 4 GB).
+Set Memory to something large (e.g. 8 GB for running the DVID test suite).
 
 #### Useful Docker commands
 
