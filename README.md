@@ -101,6 +101,7 @@ If you need to modify the `flyem-build` image, take the following steps:
 1. Edit `flyem-build/Dockerfile` as needed.
 2. Test with:
    - `docker build -t flyem-build -f flyem-build/Dockerfile .`
+     `docker run -it flyem-build`
    - Note: If your Dockerfile is pulling git repos that have changed recently, you may want to use `--nocache`:
       - `docker build -t flyem-build -f flyem-build/Dockerfile --nocache .`
 3. Tag this repo with your new tag:

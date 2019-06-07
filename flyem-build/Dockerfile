@@ -19,7 +19,7 @@ RUN echo "root:" | chpasswd
 ENV PATH /opt/conda/bin:${PATH}
 
 # Pin conda and conda-build to known-working versions
-RUN conda install -n base -y conda=4.5.11 conda-build=3.16.3
+RUN conda install -n base -y conda=4.6.14 conda-build=3.17.8
 
 # Create a workspace for our code
 # This can't be located in /home/conda because /home/conda doesn't exist yet!
@@ -27,18 +27,18 @@ RUN conda install -n base -y conda=4.5.11 conda-build=3.16.3
 ENV FLYEM_WORKSPACE /flyem-workspace
 RUN mkdir ${FLYEM_WORKSPACE}
 
-# Many FlyEM packages are built with this tool.
-RUN cd ${FLYEM_WORKSPACE} && git clone https://github.com/ilastik/ilastik-publish-packages
-RUN cd ${FLYEM_WORKSPACE}/ilastik-publish-packages && git checkout flyem && cd -
-
 # Add flyem-forge to ~/.condarc
 RUN conda config --add channels flyem-forge
+
+# Many FlyEM packages are built with this tool.
+RUN conda install -n base -y publish-conda-stack
+RUN git clone https://github.com/janelia-flyem/flyem-conda-recipes ${FLYEM_WORKSPACE}/flyem-conda-recipes
 
 #
 # Pre-initialize the DVID developer setup for dvid developers
 # who want to debug linux-specific build issues.
 #
-RUN conda create -n dvid-devel conda-forge::gcc_linux-64
+RUN conda create -n dvid-devel
 ENV PATH /opt/conda/envs/dvid-devel/bin:${PATH}
 ENV GOPATH ${FLYEM_WORKSPACE}/gopath
 ENV DVID_SRC ${GOPATH}/src/github.com/janelia-flyem/dvid
